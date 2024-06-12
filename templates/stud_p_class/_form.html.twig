@@ -1,0 +1,99 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="col">
+{{ form_row(form.action) }}  
+</div>  
+{{ form_row(form.course) }}
+
+
+
+<div class="col">
+    {{ form_row(form.nactivity) }}
+</div>
+</div>
+       <div class="row">
+        {{ form_row(form.name) }}
+    </div>
+   <div class="row-fluid">
+    <div class="row">
+    Atributes
+    <div class="atribute"
+    data-index="{{ form.atribute|length > 0 ? form.atribute|last.vars.name + 1 : 0 }}"
+    data-prototype="{{ form_row(form.atribute.vars.prototype)|e('html_attr') }}"></div>
+    </div>
+</div>
+
+   <div class="row-fluid">
+    <div class="row">
+    Operations
+    <div class="operation"
+    data-index="{{ form.operation|length > 0 ? form.operation|last.vars.name + 1 : 0 }}"
+    data-prototype="{{ form_row(form.operation.vars.prototype)|e('html_attr') }}"></div>
+    </div>
+</div>
+
+
+
+
+
+    <button class="btn btn-success">{{ button_label|default('Aceptar') }}</button>
+        <a  class="btn btn-danger " href="{{ path('app_stud_p_class_index') }}">Cancelar</a>
+{{ form_end(form) }}
+
+
+
+{% block javascripts %}
+ <script type="text/javascript">
+{# Add Atributes #}
+   const addTagLink = document.createElement('a')
+            addTagLink.classList.add('add_atribute_list')
+            addTagLink.href = '#'
+            addTagLink.innerText = 'Add Atributo'
+            addTagLink.dataset.collectionHolderClass = 'atribute'
+            const newLinkLi = document.createElement('p').append(addTagLink)
+            const collectionHolder = document.querySelector('div.atribute')
+            collectionHolder.appendChild(addTagLink)
+            const addFormToCollection = (e) => {
+                const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+                const item = document.createElement('p');
+                item.innerHTML = collectionHolder
+                    .dataset
+                    .prototype
+                    .replace(
+                        /__name__/g,
+                        collectionHolder.dataset.index
+                    );
+                collectionHolder.appendChild(item);
+                collectionHolder.dataset.index++;
+            }
+            addTagLink.addEventListener("click", addFormToCollection)
+    {# Atributes #}
+ {# Add Operation #}
+ const addTagLink15 = document.createElement('a')
+            addTagLink15.classList.add('add_operation_list')
+            addTagLink15.href = '#'
+            addTagLink15.innerText = 'Add Operación'
+            addTagLink15.dataset.collectionHolderClass = 'operation'
+            const newLinkLi15 = document.createElement('p').append(addTagLink15)
+            const collectionHolder15 = document.querySelector('div.operation')
+            collectionHolder15.appendChild(addTagLink15)
+            const addFormToCollection15 = (e) => {
+                const collectionHolder15 = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+                const item15 = document.createElement('p');
+                item15.innerHTML = collectionHolder15
+                    .dataset
+                    .prototype
+                    .replace(
+                        /__name__/g,
+                        collectionHolder15.dataset.index
+                    );
+                collectionHolder15.appendChild(item15);
+                collectionHolder15.dataset.index++;
+            }
+            addTagLink15.addEventListener("click", addFormToCollection15)
+            {# Operations #}
+</script>
+
+
+{% endblock %}

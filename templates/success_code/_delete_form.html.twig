@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_success_code_delete', {'id': success_code.id}) }}" onsubmit="return confirm('¿Está seguro que desea eliminar el elemento?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ success_code.id) }}">
+    <button class="btn"><i class="fa fa-trash"></i></button>
+</form>

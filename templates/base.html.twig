@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="icon" type="image/x-icon" href="{{ asset('dist/img/XperienceUML.png') }}"/>
+		<title>
+			{% block title %}XPerienceUML!
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% block stylesheets %}
+			<!-- Font Awesome -->
+			<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+			<!-- Ionicons -->
+			<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+			
+			<!-- DataTables -->
+			<link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+			<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}" >
+			<link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}" >
+			<link rel="stylesheet" href="{{ asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('plugins/bs-stepper/css/bs-stepper.min.css') }} ">
+			<link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
+			<!-- overlayScrollbars -->
+			<link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+			<!-- Google Font: Source Sans Pro -->
+			<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+		{% endblock %}
+	</head>
+	<body>
+		<!--class="hold-transition sidebar" style="margin: 0;"-->
+		<!-- Site wrapper -->
+		<div class="wrapper">
+			{% block navbar %}
+				{% include 'user-nav.html.twig' %}
+			{% endblock %}
+
+
+			{% block sidebar %}
+				<!-- Main Sidebar Container -->
+				<aside
+					class="main-sidebar sidebar-dark-primary elevation-4"  style="width: 280px;">
+				    {% if app.user %}
+					<!-- Brand Logo -->
+					<a href="{{ path('app_begin')}}" class="brand-link">
+						<img src="{{asset('dist/img/XperienceUML.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+						<span class="brand-text font-weight-light">
+							<i>XPerienceUML</i>
+						</span>
+					</a>
+
+					<!-- Sidebar -->
+					<div
+						class="sidebar">
+						<!-- Sidebar user (optional) -->
+						
+							<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+								<div class="image">
+									<img src="{{asset('dist/img/avatar5.png')}}" class="img-circle elevation-2" alt="User Image">
+								</div>
+								<div class="info">
+									<a href="{{path('app_user_show' ,{'id':app.user.id}) }}" class="d-block">{{ app.user.name }}</a>
+								</div>
+							</div>
+						
+						<!-- Sidebar Menu -->
+						<nav class="mt-2">
+							<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+								<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+
+								{% if is_granted('ROLE_ADMIN') %}
+
+									<li class="nav-item has-treeview menu-open">
+									    {% if not('test' in app.request.uri) and not('xapi' in app.request.uri) %} 
+									        <a href="#"  class="btn-m nav-link active">
+									    {% else %}
+									        <a href="#"  class="btn-m nav-link">
+                                        {% endif %}
+                                        
+											<i class="nav-icon fas fa-wrench"></i>
+											<p>
+												Gestión de cursos
+												<i class="fas fa-angle-left right"></i>
+
+											</p>
+										</a>
+										<ul class="nav nav-treeview">
+										    <li class="nav-item">
+											    {% if ('course/' in app.request.uri) %} 
+												    <a href="{{ path('app_course_index') }}" class="btn-m nav-link active">
+												{% else %}
+												    <a href="{{ path('app_course_index') }}" class="btn-m nav-link">
+												{% endif %}
+													    <i class="fas fa-search" style="color: transparent;"></i>
+													    <i class="fa  fa-graduation-cap nav-icon"></i>
+													    <p>Cursos</p>
+												    </a>
+											</li>
+											<li class="nav-item">
+											    {% if ('users/' in app.request.uri) %} 
+												<a href="{{ path('app_user_index') }}" class="btn-m nav-link active">
+												{% else %}
+												<a href="{{ path('app_user_index') }}" class="btn-m nav-link">
+												{% endif %}
+													<i class="fas fa-search" style="color: transparent;"></i>
+													<i class="fa fa-users nav-icon"></i>
+													<p>Usuarios
+													</p>
+												</a>
+											</li>
+											<li class="nav-item">
+											    {% if ('activity/' in app.request.uri) %} 
+											    <a href="{{ path('app_n_activity_index') }}" class="btn-m nav-link active">
+											    {% else %}
+												<a href="{{ path('app_n_activity_index') }}" class="btn-m nav-link">
+												{% endif %}
+												    <i class="fas fa-search" style="color: transparent;"></i>
+													<i class="fa fa-graduation-cap nav-icon"></i>
+													<p>
+														Actividades del Curso</p>
+												</a>
+											</li>
+
+										
+											<li class="nav-item">
+											    {% if ('success/' in app.request.uri) %} 
+												<a href="{{ path('app_model_diagram_success_index') }}" class="btn-m nav-link active">
+												{% else %}
+												<a href="{{ path('app_model_diagram_success_index') }}" class="btn-m nav-link">
+												{% endif %}
+													<i class="fas fa-search" style="color: transparent;"></i>
+													<i class="fa fa-server nav-icon"></i>
+													<p>Soluciones de Actividades</p>
+												</a>
+											</li>
+
+
+										</ul>
+									</li>
+
+
+									<li class="nav-item has-treeview menu-open" >
+
+										{% if 'xapi' in app.request.uri %} 
+									        <a href="#"  class="nav-link active">
+									    {% else %}
+									        <a href="#"  class="nav-link">
+                                        {% endif %}
+											<i class="nav-icon fas fa-chart-bar"></i>
+											<p>
+												Reportes 
+												<i class="fas fa-angle-left right"></i>
+
+											</p>
+										</a>
+										<ul class="nav nav-treeview">
+											<li class="nav-item">
+											    {% if 'xapi' in app.request.uri %} 
+												<a href="{{ path('app_xapi_tablestatements')}} " class="btn-m nav-link active"> 
+												{% else %}
+												<a href="{{ path('app_xapi_tablestatements')}} " class="btn-m nav-link"> 
+												{% endif %}
+													<i class="fas fa-search" style="color: transparent;"></i>
+													<i class="fas fa-retweet nav-icon"></i>
+													<p>Experiencia de aprendizaje
+													</p>
+												</a>
+
+
+											</li>
+
+										</ul>
+
+									</li>
+
+								{% endif %}
+
+
+								{% if is_granted('ROLE_USER')%}
+
+
+									<li class="nav-item has-treeview menu-open">
+										{% if 'test' in app.request.uri %} 
+									        <a href="#"  class="btn-sm nav-link active">
+									    {% else %}
+									        <a href="#"  class="btn-sm nav-link">
+                                        {% endif %}
+											<i class="nav-icon far fa-user"></i>
+											<p>
+												Estudiantes
+												<i class="fas fa-angle-left right"></i>
+											</p>
+										</a>
+										<ul class="nav nav-treeview">
+
+											<li class="nav-item">
+											    {% if is_granted('ROLE_ADMIN') %}
+    											    {% if 'test' in app.request.uri %} 
+    												<a href="{{ path('app_model_diagram_test_index') }}" class="btn-m nav-link active">
+    												{% else %}
+    												<a href="{{ path('app_model_diagram_test_index') }}" class="btn-m nav-link">
+    												{% endif %}
+    													<i class="fas fa-search" style="color: transparent;"></i>
+    													<i class="fa fa-server nav-icon"></i>
+    												<p>Actividades Resueltas</p>
+    												</a>
+    											{% else %}
+    											    {% if 'test' in app.request.uri %} 
+    												<a href="{{ path('app_model_diagram_test_index2', {'id': app.user.id}) }}" class="btn-m nav-link active">
+    												{% else %}
+    												<a href="{{ path('app_model_diagram_test_index2', {'id': app.user.id}) }}" class="btn-m nav-link">
+    												{% endif %}
+    													<i class="fas fa-search" style="color: transparent;"></i>
+    													<i class="fa fa-server nav-icon"></i>
+    												<p>Mis Actividades</p>
+    												</a>
+    											{% endif %}
+											</li>
+
+											<li class="nav-item"> 
+
+												<a href="/public/GoJS-master/projects/pdf/diagrama.php?idUser={{app.user.id}}" class="btn-m nav-link">
+													<i class="fas fa-search" style="color: transparent;"></i>
+													<i class="fa fa-plus-circle  nav-icon"></i>
+													<p>Responder Actividad</p>
+												</a>
+											</li>
+
+										</ul>
+									</li>
+								{% endif %}
+							</ul>
+						</nav>
+						<!-- /.sidebar-menu -->
+					</div>
+					<!-- /.sidebar -->
+				{% endif %}
+				</aside>
+
+
+			{% endblock %}
+
+		</div>
+	</body>
+	{# <body> #}
+	{% block body %}{% endblock %}
+	{% block javascripts %}
+
+
+		<!-- jQuery -->
+		<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+		<!-- Bootstrap 4 -->
+		<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+		<script src="{{ asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+		<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+
+
+		<script src="{{ asset('plugins/select2/js/select2.full.min.js') }} "></script>
+
+		<script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+
+		<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+		<script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
+
+		<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+
+		<script src="{{ asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+
+		<script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+		<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
+		<script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
+
+		<script src="{{ asset('plugins/dropzone/min/dropzone.min.js') }}"></script>
+
+
+		<!-- AdminLTE App -->
+		<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="{{ asset('dist/js/demo.js') }}"></script>
+
+
+		<script type="text/javascript">
+			$(function () { // Initialize Select2 Elements
+//$('#course_members').select2()
+
+// Initialize Select2 Elements
+$('#course_members').select2({theme: 'bootstrap4'})
+
+
+$('#n_activity_nta').select2()
+
+// Initialize Select2 Elements
+$('#n_activity_nta').select2({theme: 'bootstrap4'})
+
+
+$('#p_class_course').select2()
+
+// Initialize Select2 Elements
+$('#p_class_course').select2({theme: 'bootstrap4'})
+
+
+$('#p_class_nactivity').select2()
+
+// Initialize Select2 Elements
+$('#p_class_nactivity').select2({theme: 'bootstrap4'})
+
+
+$('#success_code_course').select2()
+
+// Initialize Select2 Elements
+$('#success_code_course').select2({theme: 'bootstrap4'})
+
+$('#success_code_nactivity').select2()
+
+// Initialize Select2 Elements
+$('#success_code_nactivity').select2({theme: 'bootstrap4'})
+
+$('#model_diagram_success_course').select2()
+
+// Initialize Select2 Elements
+$('#model_diagram_success_course').select2({theme: 'bootstrap4'})
+
+$('#model_diagram_success_nactivity').select2()
+
+// Initialize Select2 Elements
+$('#model_diagram_success_nactivity').select2({theme: 'bootstrap4'})
+
+
+$('#model_diagram_test_course').select2()
+
+// Initialize Select2 Elements
+$('#model_diagram_test_course').select2({theme: 'bootstrap4'})
+
+$('#model_diagram_test_nactivity').select2()
+
+// Initialize Select2 Elements
+$('#model_diagram_test_nactivity').select2({theme: 'bootstrap4'})
+
+
+$('#stud_p_class_course').select2()
+
+// Initialize Select2 Elements
+$('#stud_p_class_course').select2({theme: 'bootstrap4'})
+
+$('#stud_p_class_nactivity').select2()
+
+// Initialize Select2 Elements
+$('#stud_p_class_nactivity').select2({theme: 'bootstrap4'})
+
+$('#eval_code_course').select2()
+
+// Initialize Select2 Elements
+$('#eval_code_course').select2({theme: 'bootstrap4'})
+
+$('#eval_code_nactivity').select2()
+
+// Initialize Select2 Elements
+$('#eval_code_nactivity').select2({theme: 'bootstrap4'})
+
+
+// Date picker
+$("#course_initialDate").datepicker({language: 'es'});
+$("#course_fdate").datepicker({language: 'es'});
+
+
+// Date picker
+//$('#course_fdate').datetimepicker({format: 'L'});
+
+$("#example1").DataTable({
+
+
+"language": {
+"lengthMenu": "Mostrar _MENU_ registros por página",
+"zeroRecords": "No se encontró  nada - lo siento",
+"info": "Mostrando página _PAGE_ de _PAGES_",
+"infoEmpty": "No hay datos ",
+"infoFiltered": "(filtrado de _MAX_ registros totales)",
+"oPaginate": {
+"sFirst": "Primero",
+"sLast": "Último",
+"sNext": "Próximo",
+"sPrevious": "Anterior"
+}
+
+
+}
+
+});
+$('#example2').DataTable({
+
+
+"language": {
+"lengthMenu": "Mostrar _MENU_ registros por página",
+"zeroRecords": "No se encontró  nada - lo siento",
+"info": "Mostrando página _PAGE_ de _PAGES_",
+"infoEmpty": "No hay datos ",
+"infoFiltered": "(filtrado de _MAX_ registros totales)",
+"oPaginate": {
+"sFirst": "Primero",
+"sLast": "Último",
+"sNext": "Próximo",
+"sPrevious": "Anterior"
+}
+
+
+}
+
+
+});
+
+
+});
+
+function mostrarDivCourse() {
+    var div = document.getElementById("confirmModalCourse");
+    div.style.display = "block";
+  }
+  
+function ocultarDivCourse() {
+    var div = document.getElementById("confirmModalCourse");
+    div.style.display = "none";
+  }
+
+function mostrarDivUser() {
+    var div = document.getElementById("confirmModalUser");
+    div.style.display = "block";
+  }
+  
+function ocultarDivUser() {
+    var div = document.getElementById("confirmModalUser");
+    div.style.display = "none";
+  }
+  
+  function mostrarDivAct() {
+    var div = document.getElementById("confirmModalAct");
+    div.style.display = "block";
+  }
+  
+function ocultarDivAct() {
+    var div = document.getElementById("confirmModalAct");
+    div.style.display = "none";
+  }
+  
+		</script>
+
+
+	{% endblock %}
+	{# </body> #}
+	{% block footer %}
+		<footer class="main-footer">
+			<div class="float-right d-none d-sm-block">
+				<b>Version</b>
+				1.0
+			</div>
+			<strong>Copyright &copy; 2022
+				<a href="{{ path('app_begin') }}">XPerienceUML</a>.</strong>
+			Todos los derechos
+																																																									        reservados.
+		</footer>
+	{% endblock %}
+
+
+</html>

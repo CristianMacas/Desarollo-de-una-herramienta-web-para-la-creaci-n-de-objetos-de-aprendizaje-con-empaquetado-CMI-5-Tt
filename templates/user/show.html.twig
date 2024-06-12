@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuario{% endblock %}
+
+{% block body %}
+
+ <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+    <h1>Usuario</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Correo</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles[0]=='ROLE_USER' ? 'Estudiante' : 'Profesor' }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ user.name }}</td>
+            </tr>
+            <tr><td>
+
+                <a class="btn btn-info btn-sm"href="{{ path('app_user_edit1', {'id': user.id}) }}">Editar</a>
+            </td>
+            <td>
+                
+            </td></tr>
+        </tbody>
+    </table>
+    </div>
+</section>
+    </div>
+{% endblock %}

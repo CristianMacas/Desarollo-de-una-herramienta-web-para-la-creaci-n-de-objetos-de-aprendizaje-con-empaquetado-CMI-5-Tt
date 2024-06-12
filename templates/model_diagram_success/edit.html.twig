@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+   {% block title %}Editar Modelo Diagrama{% endblock %}
+   
+   {% block body %}
+   
+     <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+       <!-- Content Header (Page header) -->
+       <section class="content-header">
+         <div class="container-fluid">
+           <div class="row mb-2">
+             <div class="col-sm-6">
+       <h1>Editar Modelo Diagrama</h1>
+   <div class=" btn btn-group-horizontal">
+       {{ include('model_diagram_success/_form.html.twig', {'button_label': 'Actualizar'}) }}
+       {{ include('model_diagram_success/_delete_form.html.twig') }}
+   
+   </div>
+           </div>
+       </div>
+   </div>
+   </section>
+       </div>
+   {% endblock %}

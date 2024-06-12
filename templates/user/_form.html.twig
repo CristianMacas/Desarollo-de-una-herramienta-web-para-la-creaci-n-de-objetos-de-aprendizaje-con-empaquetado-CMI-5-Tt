@@ -1,0 +1,34 @@
+{{ form_start(form) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.roles) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.name) }}
+    <div class="row" style="margin-top:10px">
+        <div class="col-6">
+            <button class="btn btn-success btn-sm">{{ button_label|default('Guardar') }}</button>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-danger btn-sm " onclick="mostrarDivUser()">Cancelar</button>
+        </div>
+    </div>
+    
+<div class="modal" id="confirmModalUser" name="confirmModalUser" style="display:none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmar acción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que quieres cancelar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar" onclick="ocultarDivUser()">Cancelar</button>
+                <a href="{{ path('app_user_index') }}" class="btn btn-danger">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

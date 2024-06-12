@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Lista de Cursos
+{% endblock %}
+
+{% block body %}
+	<div
+		class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<div class="container-fluid">
+				<h1>Lista de Cursos</h1>
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success" role="alert">
+						<i class="icon fa fa-check"></i>
+						{{ message }}
+					</div>
+				{% endfor %}
+
+				{% for message in app.flashes('error') %}
+					<div class="alert alert-danger" role="alert">
+						<i class="icon fa fa-ban"></i>
+						{{ message }}
+					</div>
+				{% endfor %}
+
+				<div class="card-body table-responsive p-0" style="height: auto;">
+					<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Fecha  Inicio</th>
+								<th>Fecha Fin</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for course in courses %}
+								<tr>
+
+									<td>{{ course.name }}</td>
+									<td>{{ course.initialDate ? course.initialDate|date('Y-m-d') : '' }}</td>
+									<td>{{ course.fdate ? course.fdate|date('Y-m-d') : '' }}</td>
+									<td>
+										<a href="{{ path('app_course_show', {'id': course.id}) }}" title="Ver">
+											<i class="fa fa-eye"></i>
+										</a>
+
+										{% if is_granted('ROLE_ADMIN') %}
+											<a href="{{ path('app_course_edit', {'id': course.id}) }}" title="Editar">
+												<i class="fa fa-edit"></i>
+											</a>
+										<a href="{{ path('app_course_delete', {'id': course.id}) }}" title="Borrar">
+										    <i class="fa fa-trash"></i>
+										</a>
+										{% endif %}
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="5">no hay datos</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				{% if is_granted('ROLE_ADMIN')%}
+					<a class="btn btn-info btn-sm" href="{{ path('app_course_new') }}">
+						Agregar curso <i class=" fa fa-plus"></i>
+					</a>
+
+				{% endif %}
+
+
+			</div>
+		</section>
+	</div>
+{% endblock %}

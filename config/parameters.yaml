@@ -1,0 +1,8 @@
+database_host: localhost
+database_port: null
+database_name: xperienc_uml
+database_user: xperienc
+database_password: Zb(nY;w1A62r1R
+database_charset: utf8mb4    # Verifica que el charset sea el adecuado
+
+database_url: mysql://xperienc:Zb(nY;w1A62r1R@localhost:3306/xperienc_uml?charset=utf8mb4    # Verifica que el charset sea el adecuado

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crear Nuevo Usuario{% endblock %}
+
+{% block body %}
+  <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Crear nuevo Usuario</h1>
+            <div class=" btn btn-group-horizontal">
+              {{ include('user/_form.html.twig') }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

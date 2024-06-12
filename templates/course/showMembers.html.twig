@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Lista de Cursos
+{% endblock %}
+
+{% block body %}
+	<div
+		class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<div class="container-fluid">
+				<h1>Lista de Miembros del curso {{ course_name }}</h1>
+				<div class="card-body table-responsive p-0" style="height: auto;">
+					<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Email</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for user in users %}
+								<tr>
+
+									<td>{{ user.name }}</td>
+									<td>{{ user.email }}</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="5">no hay datos</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				{% if is_granted('ROLE_ADMIN')%}
+				    <a class="btn btn-info btn-sm " href="{{ path('app_course_members', {'id': course_id}) }}">Matricular estudiantes</a>
+					<a class="btn btn-info btn-sm" href="{{ path('app_course_show', {'id': course_id}) }}">
+						Volver al curso
+					</a>
+
+				{% endif %}
+
+
+			</div>
+		</section>
+	</div>
+{% endblock %}

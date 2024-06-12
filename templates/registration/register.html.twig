@@ -1,0 +1,189 @@
+{% form_theme registrationForm.email 'utiles/nolabels/bootstrap_nolabels_one_col.html.twig' %}
+{% form_theme registrationForm.plainPassword 'utiles/nolabels/bootstrap_nolabels_one_col.html.twig' %}
+{% form_theme registrationForm.name 'utiles/nolabels/bootstrap_nolabels_one_col.html.twig' %}
+
+
+{% block title %}{% endblock %}
+
+<link rel="icon" type="image/x-icon" href="{{ asset('/public/dist/img/XperienceUML.png') }}"/>
+
+{% block stylesheets %}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('/public/dist/css/adminlte.min.css') }}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+{% endblock  %}
+
+{% block body %}
+    <body class="hold-transition register-page">
+        <div class="register-box">
+          <div class="register-logo">
+              <img src="{{asset('dist/img/XperienceUML.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="#"><b>XPerience</b>UML</a>
+          </div>
+
+           <div id="variable">
+                {{error}}
+            </div>
+           
+         
+          <div class="card" >
+            <div class="card-body register-card-body">
+              <p class="login-box-msg">Registrarme</p>
+        
+
+                {{ form_start(registrationForm) }}
+                <div class="input-group mb-3">
+                  {{ form_row(registrationForm.email,{'attr': {'class': 'form-control','autocomplete': 'off'}})}}
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  {{ form_row(registrationForm.plainPassword,{'attr': {'class': 'form-control', 'autocomplete': 'new-password'}}) }}
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  {{ form_row(registrationForm.name,{'attr': {'class': 'form-control'}}) }}
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal" id="confirmContra" name="confirmContra" style="display:none;">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmModalLabel">Verificacion de datos</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="modalResult" name="modalResult">
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal" id="cerrar" onclick="ocultarDiv()">Verificar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-8">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" onclick="mostrarDiv()">Registrar usuario</button>
+                  </div>
+                </div>
+                {{ form_end(registrationForm) }}  
+                <div class="row">
+                  <div class="col-8">
+                    <a href="{{ path('app_login') }}"><button class="btn btn-info btn-block btn-flat">Regresar</button></a>
+                  </div>
+                </div>
+                
+                
+        
+            
+        
+            </div>
+            <!-- /.form-box -->
+          </div><!-- /.card -->
+        </div>
+        <!-- /.register-box -->
+    
+    
+    </body>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    
+    <script type="text/javascript">
+        
+    function mostrarDiv() {
+        const inputPasswd = document.getElementById('registration_form_plainPassword');
+        const inputName = document.getElementById('registration_form_name');
+        const inputEmail = document.getElementById('registration_form_email');
+        var texto = document.getElementById("modalResult");
+        var mensaje= "";
+        const longitudP = inputPasswd.value.length;
+        const longitudN = inputName.value.length;
+        const longitudE = inputEmail.value.length;
+        const esEmailValido = /\S+@\S+\.\S+/.test(inputEmail.value);
+        var nuevaVariable = '';
+        document.getElementById('variable').innerHTML = nuevaVariable;
+        if (longitudP < 5) {
+            // Aquí puedes realizar alguna acción adicional, como mostrar un mensaje de error o cambiar el estilo del campo
+            mensaje="La cantidad de caracteres de la contraseña es menor o igual a 5.";
+        } 
+        if (longitudN==0)
+        {
+            if (mensaje.length!=0)
+            {
+                mensaje = mensaje + "\n\nInserte un nombre.";
+            }
+            else
+            {
+                mensaje="Inserte un nombre.";
+            }
+        }
+        if (longitudE!=0)
+        {
+            if (!esEmailValido)
+            {
+                if (mensaje.length!=0)
+                {
+                    mensaje = mensaje + "\n\nCorreo no valido.";
+                }
+                else
+                {
+                    mensaje="Correo no valido.";
+                }
+            }
+        }
+        else
+        {
+            if (mensaje.length!=0)
+            {
+                mensaje = mensaje + "\n\nInserte un correo electronico.";
+            }
+            else
+            {
+                mensaje="Inserte un correo electronico";
+            }
+        }
+        if (mensaje.length!=0)
+        {
+            texto.innerHTML=mensaje;
+            //$('#confirmContra').modal('show');
+            $('#confirmContra').modal({backdrop: false, keyboard: false});
+            //$('#confirmContra').on('hide.bs.modal', function(e) {e.preventDefault();});
+            setTimeout(function() 
+                        {
+                            document.getElementById('confirmContra').style.display = 'none';}, 
+                            60000); // 60000 milisegundos = 1 minuto
+                        }
+      }
+      
+    </script>
+{% endblock %}

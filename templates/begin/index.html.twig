@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Hola{% endblock %}
+
+{% block navbar %}
+    <!-- Navbar -->
+    {% include 'user-nav.html.twig' %}
+{% endblock %}
+
+
+{% block body %}
+    
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Bienvenido</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ path('app_begin') }}">Inicio</a></li>
+                            <li class="breadcrumb-item active">Bienvenido</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                            <i class="fas fa-minus"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                                title="Remove">
+                            <i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    Inicia tu experiencia UML !
+                </div>
+
+
+                <!-- Small Box (Stat card) -->
+                <div class="row">
+                    {% if  is_granted('ROLE_ADMIN') or app.user in miembros %}
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-gradient-danger">
+
+                            <div class="inner">
+                                <h3>{{  activities|length }}<sup style="font-size: 20px"></sup></h3>
+
+                                <p>Actividades</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas  fa-tags"></i>
+                            </div>
+                            <a href="{{ path('app_model_diagram_test_index1',{'id': app.user.id}) }}" class="small-box-footer">
+                                Más info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="col-lg-3 col-6">
+                            <!-- small card -->
+                            <div class="small-box bg-warning">
+
+                                <div class="inner">
+                                    <h3>{{ users|length }}<sup style="font-size: 20px"></sup></h3>
+
+                                    <p>Usuarios</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <a href="{{ path('app_user_index') }}" class="small-box-footer">
+                                    Más info <i class="fas fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+             
+
+                {% endif %}
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+
+
+
+
+{% endblock %}

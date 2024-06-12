@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}xAPI
+{% endblock %}
+
+{% block navbar %}
+	<!-- Navbar -->
+	{% include 'user-nav.html.twig' %}
+{% endblock %}
+
+
+{% block body %}
+
+	<!-- Content Wrapper. Contains page content -->
+	<div
+		class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1><em>Estructura xAPI</em></h1>
+					</div>
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item">
+								<a href="#">xAPI</a>
+							</li>
+							<li class="breadcrumb-item active">Reportes</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+
+
+		<!-- Main content -->
+		<section
+			class="content">
+
+			<!-- Default box -->
+			<div class="card">
+				<div class="card-header">
+
+					<div class="card-tools">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+							<i class="fas fa-minus"></i>
+						</button>
+						<button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+							<i class="fas fa-times"></i>
+						</button>
+					</div>
+				</div>
+				<div class="card-body">
+                  
+					<i class="nav-icon fas fa-chart-bar"></i><strong>Datos LRS</strong>
+				</div>
+
+
+				<!-- Small Box (Stat card) -->
+				<div
+					class="row">
+					<!-- ./col -->
+					<div
+						class="col-lg-3 col-6">
+						<!-- small card -->
+						<div class="small-box bg-warning">
+
+							<div class="inner">
+								<h3>{{ statements|length }}<sup style="font-size: 20px"></sup>
+								</h3>
+
+								<p><em>Declaraciones</em>
+								</p>
+							</div>
+							<div class="icon">
+								<i class="fas  fa-tasks"></i>
+
+							</div>
+							<a href="{{path('app_xapi_tablestatements')}}" class="small-box-footer">
+								Más info
+								<i class="fas fa-arrow-circle-right"></i>
+							</a>
+						</div>
+					</div>
+					<!-- ./col -->
+	<!-- ./col -->
+	<div
+	class="col-lg-3 col-6">
+	<!-- small card -->
+	<div class="small-box bg-success">
+
+		<div class="inner">
+			<h3>{{ actividades|length }}<sup style="font-size: 20px"></sup>
+			</h3>
+
+			<p><em>Control de Actividades </em>
+			</p>
+		</div>
+		<div class="icon">
+			<i class="fas  fa-edit"></i>
+
+		</div>
+		<a href="{{path('app_xapi_tablestatements')}}" class="small-box-footer">
+			Más info
+			<i class="fas fa-arrow-circle-right"></i>
+		</a>
+	</div>
+</div>
+<!-- ./col -->
+
+
+<div
+class="col-lg-3 col-6">
+<!-- small card -->
+<div class="small-box bg-info">
+
+	<div class="inner">
+		<h3>{{ 7}}<sup style="font-size: 20px"></sup>
+		</h3>
+
+		<p><em>Verbos </em>
+		</p>
+	</div>
+	<div class="icon">
+		<i class="fas fa-graduation-cap"></i>
+
+	</div>
+	<a href="{{path('app_xapi_tablestatements')}}" class="small-box-footer">
+		Más info
+		<i class="fas fa-arrow-circle-right"></i>
+	</a>
+</div>
+</div>
+<!-- ./col -->
+				</div>
+				<!-- /.row -->
+
+			</div>
+			<!-- /.card -->
+
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+
+{% endblock %}

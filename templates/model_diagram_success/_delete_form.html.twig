@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_model_diagram_success_delete', {'id': model_diagram_success.id}) }}" onsubmit="return confirm('¿Está seguro que desea eliminar el elemento?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ model_diagram_success.id) }}">
+    <button class="btn"><i class="fa fa-trash"></i></button>
+</form>

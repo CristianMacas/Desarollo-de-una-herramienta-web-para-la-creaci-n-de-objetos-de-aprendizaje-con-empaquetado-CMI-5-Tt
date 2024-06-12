@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista Propuesta Estudiante Prototipo Clase{% endblock %}
+
+{% block body %}
+
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+    <h1>Lista Propuesta Estudiante Prototipo Clase</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            <i class="icon fa fa-check"></i>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+  <div class="card-body table-responsive p-0" style="height: 300px;">
+<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+        <thead>
+            <tr>
+                <th>Curso</th>
+                <th>Actividad</th>
+                <th>Nombre</th>
+                <th>Creado por</th>
+                <th>Acciones</th>
+            </tr>
+
+
+        </thead>
+        <tbody>
+        {% for stud_p_class in stud_p_classes %}
+            <tr>
+        <td><strong><i>{{ stud_p_class.course }}</i></strong></td>  
+        <td><span class=" btn btn-warning">{{ stud_p_class.nactivity }}</span></td>
+         <td><span class=" btn btn-info">{{ stud_p_class.name }}</span></td>
+         <td><strong><i>{{ stud_p_class.action }}</i></strong></td>
+                   
+                
+                <td>
+                    <a href="{{ path('app_stud_p_class_show', {'id': stud_p_class.id}) }}"><i class="fa fa-eye"></i></a>
+
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
+                    <a href="{{ path('app_stud_p_class_edit', {'id': stud_p_class.id}) }}"><i class="fa fa-edit"></i></a>
+                     {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no hay  datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')%}
+<a class="btn  btn-primary" href="{{ path('app_stud_p_class_new') }}"><i class=" fa fa-user-plus"></i></a>
+{% endif %}
+ </div>
+</section>
+    </div>
+{% endblock %}

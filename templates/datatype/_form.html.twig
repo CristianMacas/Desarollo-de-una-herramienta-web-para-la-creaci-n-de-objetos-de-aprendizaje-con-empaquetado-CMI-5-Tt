@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_row(form.denomination) }}
+    <button class="btn btn-success">{{ button_label|default('Aceptar') }}</button>
+        <a  class="btn btn-danger " href="{{ path('app_datatype_index') }}">Cancelar</a>
+{{ form_end(form) }}

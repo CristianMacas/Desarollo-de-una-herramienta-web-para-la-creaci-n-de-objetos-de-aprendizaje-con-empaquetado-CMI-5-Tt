@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modelo Diagrama Satisfactorio{% endblock %}
+
+{% block body %}
+
+
+ <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+    <h1>Modelo Diagrama Satisfactorio</h1>
+    <div class="row">
+      <div class="col">
+   <strong> <i>Diagrama:{{ model_diagram_success.id }}</i></strong>
+
+</div>
+
+</div>
+    <div class="row">
+           <div class="col"><strong><i>{{ model_diagram_success.course }}/</i></strong></div>
+
+ 
+ 
+    
+           <div class="col"><u><strong></i>{{ model_diagram_success.nactivity }}</i></strong></u></div>
+
+    </div>
+
+
+
+
+
+    <table class="table">
+        <tbody style="color:gray">
+       
+
+
+
+
+  <textarea class="form-control" name="" id="" rows="12" style="border-style: ;color:green" disabled>
+//Respuesta correcta json
+         
+{{ model_diagram_success.data ? model_diagram_success.data|json_encode : '' }}
+
+           
+            </textarea>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_model_diagram_success_index') }}"><i class="fa fa-tasks"></i></a>
+
+   
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_model_diagram_success_edit', {'id': model_diagram_success.id}) }}"><i class="fa fa-edit"></i></a>
+    {{ include('model_diagram_success/_delete_form.html.twig') }}
+
+    {% endif %}
+
+
+        </div>
+</section>
+    </div>
+{% endblock %}

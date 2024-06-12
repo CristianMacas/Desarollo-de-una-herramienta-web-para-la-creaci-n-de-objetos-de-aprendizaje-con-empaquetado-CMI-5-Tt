@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+    {% form_theme form.atribute 'utiles/nolabels/bootstrap_nolabels_one_col.html.twig' %}
+    {% form_theme form.operation 'utiles/nolabels/bootstrap_nolabels_one_col.html.twig' %}
+   {% form_theme form.atribute.vars.prototype.name 'utiles/nolabelcols/bootstrap_nolabels_two_col.html.twig' %}
+   {% form_theme form.atribute.vars.prototype.datatype 'utiles/nolabelcols/bootstrap_nolabels_two_col.html.twig' %}
+   {% form_theme form.operation.vars.prototype.name 'utiles/nolabelcols/bootstrap_nolabels_two_col.html.twig' %}
+   {% form_theme form.operation.vars.prototype.datatype 'utiles/nolabelcols/bootstrap_nolabels_two_col.html.twig' %}
+   {% block title %}Editar Solución Prototipo Clase{% endblock %}
+   
+   {% block body %}
+   
+     <div class="content-wrapper">
+       <!-- Content Header (Page header) -->
+       <section class="content-header">
+         <div class="container-fluid">
+           <div class="row mb-2">
+             <div class="col-sm-6">
+       <h1>Editar Solución Prototipo Clase</h1>
+   <div class=" btn btn-group-horizontal">
+       {{ include('p_class/_form.html.twig', {'button_label': 'Actualizar'}) }}
+       {{ include('p_class/_delete_form.html.twig') }}
+   
+   </div>
+           </div>
+       </div>
+   </div>
+   </section>
+       </div>
+   {% endblock %}

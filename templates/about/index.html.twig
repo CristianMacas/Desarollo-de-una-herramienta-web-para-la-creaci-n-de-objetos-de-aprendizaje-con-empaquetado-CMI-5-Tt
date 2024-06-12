@@ -1,0 +1,276 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acerca de {% endblock %}
+
+{% block body %}
+    <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+        <!-- Content Header (Page header) -->
+ 
+   
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-solid">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-sm-6">
+                <h3 class="my-3">XPERIENCEUML</h3>
+                <p>Objeto de Aprendizaje para modelado UML  usando estándar xAPI .</p>
+  
+                <hr>
+    
+  
+              </div>
+            </div>
+
+     
+
+            <div class="row mt-4">
+              <nav class="w-100">
+                <div class="nav nav-tabs" id="product-tab" role="tablist">
+                  <!--a class="nav-item nav-link active " id="releditor-tab" data-toggle="tab" href="#releditor" role="tab" aria-controls="releditor" aria-selected="true">Editor UML V1</a-->
+                  <a class="nav-item nav-link " id="clases-tab" data-toggle="tab" href="#clases" role="tab" aria-controls="clases" aria-selected="true">Clases UML</a>
+                  <a class="nav-item nav-link" id="visibilidad-tab" data-toggle="tab" href="#visibilidad" role="tab" aria-controls="Visibilidad" aria-selected="false">Visibilidad</a>
+                  <a class="nav-item nav-link" id="asociaciones-tab" data-toggle="tab" href="#asociaciones" role="tab" aria-controls="asociaciones" aria-selected="false">Asociaciones</a>
+                </div>
+              </nav>
+              <div class="tab-content p-3" id="nav-tabContent">
+
+                <div class="tab-pane fade show active" id="clases" role="tabpanel" aria-labelledby="clases-tab"> 
+                    
+                    Para UML una clase es 
+                    
+                   <strong><i> “una descripción de un conjunto de objetos que comparten los
+                    mismos atributos, operaciones, métodos, relaciones, y semántica”</i></strong>
+                    . De esta forma, un
+                    diagrama de clase de UML puede describir todos los componentes de una clase de una
+                    forma sencilla. Así, el elemento fundamental de los diagramas de clase es el icono que
+                    representa una clase.El icono de una clase es un rectángulo dividido en tres secciones:
+                    Clase,Atributos y Operaciones.                
+                </div>
+                <div class="tab-pane fade" id="visibilidad" role="tabpanel" aria-labelledby="visibilidad-tab"> 
+                   
+                <p>
+                Dependiendo del detalle del diagrama de clase, la notación para un atributo puede
+                    indicar su nombre, su tipo, un valor de inicio y su visibilidad, siendo su sintaxis:
+                    visibilidad nombre: tipo = valor
+               </p>
+                   <p> Donde:
+                   <strong>•</strong> Visibilidad expresa si el atributo es visible para el resto de objetos del diagrama,
+                    pudiéndose dar los siguientes casos:
+                    </p>
+                    <p>
+                 <strong>+</strong> Visibilidad pública: Visible por todos los objetos
+                    </p>
+                    <p>
+                   <strong> #</strong> Visibilidad protegida: Visible sólo por el objeto y sus descendientes
+
+                    </p>
+                    <p>
+                  <strong>-</strong> Visibilidad privada: Visible sólo por el objeto
+                  </p>
+                  <p>
+                    • Nombre es el identificador del atributo
+                    </p>
+                    <p>• Tipo indica el dominio del atributo
+                        </p>
+                        <p>
+                        • Valor es un elemento opcional que indica un valor de inicio para el atributo
+
+                        </p>
+                        <p>
+                    Al igual que sucede con los atributos, las operaciones de una clase pueden especificarse
+                    con diferente nivel de detalle según la siguiente sintaxis:
+                    visibilidad nombre (lista de parámetros) : tipo de retorno
+</p>
+
+<div class="row">
+<img src="{{asset('dist/img/uml.png')}}" class="img-fluid">
+</div>
+                </div>
+                <div class="tab-pane fade" id="asociaciones" role="tabpanel" aria-labelledby="asociaciones-tab"> 
+                    
+                <p>
+                    Las asociaciones representan las relaciones más generales entre clases, es decir, las
+                    relaciones con menor contenido semántico. Para UML una asociación va a describir un
+                    conjunto de vínculos entre las instancias de las clases.
+                
+                </p>
+
+
+                <p>
+                    Las asociaciones pueden ser binarias (conectan dos clases) o n-arias (conectan n
+                    clases), aunque lo más normal en un modelo es utilizar sólo relaciones binarias (en
+                    general, y sin entrar en detalles, se puede afirmar que una relación n-aria puede
+                    modelarse mediante un conjunto finito de relaciones binarias).
+                    La forma de representar las asociaciones binarias en UML es mediante una línea que
+                    conecta las dos clases. En general, las asociaciones son bidireccionales, esto es, no
+                    tienen un sentido asociado.
+                </p>
+
+
+
+                <p>
+
+                    Cada asociación tiene dos roles; cada rol marca una dirección en la asociación. 
+
+                </p>
+
+                <p>
+
+
+                    Cada rol tiene asociada una multiplicidad que especifica el número de instancias de una
+                    clase que pueden estar relacionadas con una única instancia de la clase asociada. 
+                </p>
+
+                <p>
+
+
+                          
+                    La<strong><i> multiplicidad</i></strong> se expresa en UML mediante una cadena asociada a un rol que representa
+                    un subconjunto abierto de enteros no negativos. Sintácticamente esto se traduce en una
+                    secuencia de intervalos de números enteros separada por comas, donde cada intervalo
+                    representa un rango, quizás infinito, de enteros en el formato:
+                </p>
+
+
+                <div class="row">
+<img src="{{asset('dist/img/asociacion.png')}}" class="img-fluid">
+</div>
+
+                <p>
+
+                 <strong>  <i> cota inferior .. cota superior</i></strong>
+
+                </p>
+
+
+
+<p>
+
+    <strong><i>Agregación y composición</i></strong>
+</p>
+
+                <p>
+
+
+                
+                    La <strong><i>agregación</i></strong> es una asociación con unas connotaciones semánticas más definidas: la
+                    agregación es la relación parte-de, que presenta a una entidad como un agregado de
+                    partes (en orientación a objeto, un objeto como agregado de otros objetos). Como
+                    ejemplo ilustrativo de lo que es una agregación podemos recurrir al ya clásico ejemplo
+                    de la bicicleta, donde una bicicleta se modela como un agregado de ruedas, sillín,
+                    manillar, cuadro y pedales.
+                </p>
+
+
+                <p>
+
+                    La agregación en UML presenta el siguiente matiz, la existencia de las partes agregadas
+                    es independiente de la existencia del objeto agregado, esto es, cuando se crea el objeto
+                    agregado se irán estableciendo las relaciones con cada una de las partes que lo
+                    constituyen a medida que se vayan necesitando. Los objetos que representan las partes
+                    del objeto agregado pueden ya existir o crearse para formar parte del objeto agregado,
+                    pero cuando se destruye el objeto agregado, los objetos que lo forman no tienen porque
+                    ser destruidos, por consiguiente, las partes pueden sobrevivir a la destrucción del objeto
+                    agregado
+
+                </p>
+
+<p>
+    Volviendo al ejemplo de la bicicleta, cuando se crea una instancia de la clase bicicleta,
+    ésta deberá asociarse con las instancias oportunas de las clases de los objetos que
+    forman el agregado bicicleta. Pero, si la instancia de bicicleta es destruida, las instancias
+    de sus objetos constituyentes pueden seguir existiendo, y convertirse en partes de otros
+    objetos.
+
+</p>
+
+<p>
+    En UML la agregación se representa por una asociación en la que el rol del extremo
+    unido a la clase agregada presenta el adorno de un diamante vacío.
+</p>
+
+
+<div class="row">
+<img src="{{asset('dist/img/agregacion.png')}}" class="img-fluid">
+</div>
+
+<P>
+
+<strong>
+    <i>Composición</i>
+</strong>
+</P>
+<p>
+
+
+
+
+UML presenta una variación mucho más restrictiva de agregación que recibe el nombre
+de composición. La composición implica que los componentes de un objeto sólo pueden
+pertenecer a un solo objeto agregado, de forma que cuando el objeto agregado es
+destruido todas sus partes son destruidas también.
+
+</p>
+
+<p>
+    La notación empleada para la composición es la misma que para la agregación con la
+    diferencia que el adorno de composición es un diamante relleno.
+</p>
+
+<div class="row">
+<img src="{{asset('dist/img/composicion.png')}}" class="img-fluid">
+</div>
+
+
+<p>
+
+<strong> <i>Herencia</i></strong>
+</p>
+<p>
+
+
+
+ 
+    La herencia es la típica relación de generalización/especialización entre clases. En UML
+    la herencia se representa mediante una flecha, cuya punta es un triángulo vacío. La
+    flecha que representa a la herencia va orientada desde la subclase a la superclase.
+    Cuando de una superclase se derivan varias subclases existen dos notaciones diferentes,
+    aunque totalmente equivalentes, para su representación. En la primera forma de
+    representar esta situación se muestra una superclase a la que llegan tantas flechas como
+    clases derivadas tiene. En la segunda representación se tiene una única punta de flecha
+    que llega a la superclase, pero a la base del triángulo que hace de punta de flecha llegan
+    tantos caminos como subclases haya.
+</p>
+
+
+<div class="row">
+<img src="{{asset('dist/img/herencia.png')}}" class="img-fluid">
+</div>
+
+
+<p>
+
+<strong>Fuente:</strong>
+    </p>
+
+    <p>
+
+        <i>https://repositorio.grial.eu/</i>
+        </p>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+  
+      </section>
+
+
+</div>
+
+{% endblock %}

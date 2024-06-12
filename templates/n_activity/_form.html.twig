@@ -1,0 +1,74 @@
+
+
+{{ form_start(form) }}
+<div class="container-fluid">
+	<div class="row">
+		<div class=" col-sm-12">
+			{{form_row(form.title)  }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			{{form_row(form.description )  }}
+		</div>
+		<div class="col-sm-12">
+			{{form_row(form.place )  }}
+		</div>
+	</div>
+	<div class="row">
+		{{form_row(form.nta)  }}
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+		{{form_row(form.tecsol)  }}
+		</div>
+	</div>
+</div>
+
+<div class="row"  style="margin-top:10px; animation-fill-mode: unset !important;">
+	<div  class="col">
+	    <button id="acceptButton" class="btn btn-success btn-sm">{{ button_label|default('Guardar') }}</button>
+	 </div>   
+	 <div  class="col">
+	    {% if not('/edit' in app.request.uri) %} 
+	        <button id="confirmButton" name="confirmButton" class="btn btn-success btn-sm">Guardar y adicionar soluciÃ³n</button>
+	 </div>   
+	 <div class="col">
+        {% endif %}
+    <div  class="col">
+	    <button type="button" class="btn btn-danger btn-sm " onclick="mostrarDivAct()">Cancelar</button>
+	 </div> 
+        
+ </div>
+</div>
+
+<div class="modal" id="confirmModalAct" name="confirmModalAct" style="display:none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmar acciÃ³n</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Â¿EstÃ¡s seguro de que quieres cancelar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar" onclick="ocultarDivAct()">Cancelar</button>
+                <a href="{{ app.request.headers.get('referer') }}" class="btn btn-danger" id="botonVolver">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('botonVolver').addEventListener('click', function(event) {
+    event.preventDefault(); // Evitar el comportamiento predeterminado de navegaci¨®n
+
+    window.history.back(); // Navegar hacia atr¨¢s en la historia del navegador
+});
+</script>
+
+
+{{ form_end(form) }}

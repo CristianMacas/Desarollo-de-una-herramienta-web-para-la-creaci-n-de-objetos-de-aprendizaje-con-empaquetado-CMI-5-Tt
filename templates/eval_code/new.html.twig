@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+    {% form_theme form.codeline 'utiles/nolabels/bootstrap_nolabels_one_col.html.twig' %}
+    
+    {% form_theme form.codeline.vars.prototype.entry 'utiles/nolabelcols/bootstrap_nolabels_all_col.html.twig' %}
+           
+       {% block title %}Nueva Evaluación Tarea Implementación{% endblock %}
+       
+       {% block body %}
+       
+        <div class="content-wrapper">
+           <!-- Content Header (Page header) -->
+           <section class="content-header">
+             <div class="container-fluid">
+               <div class="row mb-2">
+                 <div class="col-sm-6">
+           <h1>Nueva Evaluación Tarea  Implementación</h1>
+       <div class=" btn btn-group-horizontal">
+           {{ include('eval_code/_form.html.twig') }}
+       </div>
+       
+       
+       </div>
+           </div>
+       </div>
+       </section>
+           </div>
+       {% endblock %}

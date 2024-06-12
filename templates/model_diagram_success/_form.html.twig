@@ -1,0 +1,31 @@
+{{ form_start(form) }}
+<div class="row">
+
+	{{ form_row(form.course) }}
+
+
+	<div class="col">
+		{{ form_row(form.nactivity) }}
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+		{{ form_row(form.data) }}
+	</div>
+
+</div>
+
+
+<div class="row">
+	<div class="col">
+		{{ form_row(form.archive) }}
+	</div>
+
+</div>
+
+
+
+<button class="btn btn-success">{{ button_label|default('Aceptar') }}</button>
+<a class="btn btn-danger " href="{{ path('app_model_diagram_success_index') }}">Cancelar</a>
+{{ form_end(form) }}

@@ -1,0 +1,18 @@
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "\"C:\\Program\ Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:
+            encoding: utf-8
+            default-header: false
+            enable-local-file-access: true
+        env: []
+    image:
+        enabled:    true
+        binary:     "\"C:\\Program\ Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+        options:
+            encoding: utf-8
+            default-header: false
+            enable-local-file-access: true
+        env: []
+

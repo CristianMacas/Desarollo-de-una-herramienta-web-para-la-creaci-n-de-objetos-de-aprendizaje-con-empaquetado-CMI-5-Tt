@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Usuario{% endblock %}
+
+{% block body %}
+
+  <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+    <h1>Editar Usuario</h1>
+<div class=" btn btn-group-horizontal">
+<table>
+    <tr><td>
+    {{ include('user/_form1.html.twig', {'button_label': 'Actualizar'}) }}
+    </td></tr>
+    </table>
+    </div>
+    </div>
+    </div>
+</div>
+</section>
+    </div>
+{% endblock %}

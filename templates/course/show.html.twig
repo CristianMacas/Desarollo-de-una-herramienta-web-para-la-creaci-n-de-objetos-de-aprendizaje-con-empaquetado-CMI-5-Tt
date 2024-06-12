@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Curso{% endblock %}
+{% block body %}
+    <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+    <h1>Curso</h1>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nombre:</th>
+                <td>{{ course.name }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de Inicio:</th>
+                <td>{{ course.initialDate ? course.initialDate|date('Y-m-d ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fecha Fin:</th>
+                <td>{{ course.fdate ? course.fdate|date('Y-m-d ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Miembros:</th>
+                 <td>
+                    <a class="btn btn-success btn-sm" href="{{ path('app_course_studients', {'id': course.id}) }}">Ver miembros</a>
+                 </td> 
+            </tr>
+            <tr><td></td><td></td></tr>
+        </tbody>
+    </table>
+
+    <table>
+    <tr>
+    <td>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-info btn-sm " href="{{ path('app_course_members', {'id': course.id}) }}">Matricular estudiantes</a>
+    <a class="btn btn-info btn-sm" href="{{ path('app_n_activity_show_course', {'id': course.id}) }}">Actividades creadas</a>
+    <a class="btn btn-info btn-sm" href="{{ path('app_model_diagram_test_index1', {'id': course.id}) }}">Actividades realizadas</a>
+    <a class="btn btn-info btn-sm" href="{{ path('app_n_activity_new',{'id': course.id}) }}">Crear actividad</a>
+
+    {% endif %}
+    </td></tr>
+    </table>
+    </div>
+    </section>
+        </div>
+{% endblock %}

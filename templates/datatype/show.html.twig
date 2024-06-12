@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tipo de Dato{% endblock %}
+
+{% block body %}
+
+
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+    <h1>Tipo de Dato</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Denominación</th>
+                <td>{{ datatype.denomination }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_datatype_index') }}"><i class="fa fa-tasks"></i></a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_datatype_edit', {'id': datatype.id}) }}"><i class="fa fa-edit"></i></a>
+
+    {{ include('datatype/_delete_form.html.twig') }}
+
+    {% endif %}
+
+
+        </div>
+</section>
+    </div>
+{% endblock %}

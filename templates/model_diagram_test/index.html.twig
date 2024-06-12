@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Diagramas{% endblock %}
+
+{% block body %}
+{% if app.user %}
+ <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        {% if is_granted('ROLE_ADMIN') %}
+            <h1>Diagramas Realizados por Estudiantes</h1>
+        {% else %}
+            <h1>Mis actividades</h1>
+        {% endif %}
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            <i class="icon fa fa-check"></i>
+            {{ message }}
+        </div>
+        {% endfor %}
+        <div class="card-body table-responsive p-0" style="height:auto;">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+        <thead>
+            <tr>
+                <th>Creado por</th>
+                <th>Fecha</th>
+                <th>Curso</th>
+                <th>Actividad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for model_diagram_test in model_diagram_tests %}
+            <tr>
+                <td><strong><i>{{ model_diagram_test.action }}</i></strong></td>  
+                <td><strong><i>{{ model_diagram_test.Fecha }}</i></strong></td>
+                <td><strong><i>{{ model_diagram_test.course }}</i></strong></td>  
+                <td><strong><i>{{ model_diagram_test.nactivity }}</i></strong></td>
+                <td>
+                    <a href="/public/GoJS-master/projects/pdf/diagrama.php?mode=view&table=model_diagram_test&id={{ model_diagram_test.id }}" title="Ver">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <!--a href="/public/GoJS-master/projects/pdf/diagrama.php?mode=edit&table=model_diagram_test&id={{ model_diagram_test.id }}" title="Editar"-->
+                        <!--i class="fa fa-edit"--><!--/i-->
+                    <!--/a-->
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">no hay  datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% if is_granted('ROLE_ADMIN') %}
+<!--a class="btn btn-info btn-sm" href="/GoJS-master/projects/pdf/diagrama.php" >
+    Responder Actividad con Diagrama
+</a-->
+{% endif %}
+ </div>
+</section>
+    </div>
+{% endif %}
+{% endblock %}

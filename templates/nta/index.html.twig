@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista  de Tipos de Actividad{% endblock %}
+
+{% block body %}
+
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+    <h1>Lista  de Tipos de Actividad</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            <i class="icon fa fa-check"></i>
+            {{ message }}
+        </div>
+    {% endfor %}
+<div class="card-body table-responsive p-0" style="height: 300px;">
+<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+        <thead>
+            <tr>
+                <th>Denominación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n_tum in n_t_as %}
+            <tr>
+                <td>{{ n_tum.denomination }}</td>
+                <td>
+                    <a href="{{ path('app_n_t_a_show', {'id': n_tum.id}) }}"><i class="fa fa-eye"></i></a>
+                    {% if is_granted('ROLE_ADMIN')%}
+                    <a href="{{ path('app_n_t_a_edit', {'id': n_tum.id}) }}"><i class="fa fa-edit"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no hay datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+ </div>
+    {% if is_granted('ROLE_ADMIN')%}
+<a class="btn  btn-primary" href="{{ path('app_n_t_a_new') }}"><i class=" fa fa-plus"></i></a>
+{% endif %}
+
+
+     </div>
+</section>
+    </div>
+{% endblock %}

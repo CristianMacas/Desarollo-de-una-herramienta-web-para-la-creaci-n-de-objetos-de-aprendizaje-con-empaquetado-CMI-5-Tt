@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Curso{% endblock %}
+
+{% block body %}
+
+    
+  <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+    <h1>Editar Curso</h1>
+    <div class=" btn btn-group-horizontal">
+    {{ include('course/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+
+</div>
+
+
+    </div>
+    </div>
+</div>
+</section>
+    </div>
+{% endblock %}

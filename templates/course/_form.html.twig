@@ -1,0 +1,54 @@
+{{ form_start(form) }}
+<div class="row">
+<div class="col-14">
+	{{form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+</div>
+</div>
+
+<div class="row">
+<div class="col-14">
+	{{ form_row(form.initialDate,  {'attr': {'class': 'form-control'}}) }}
+</div>
+</div>
+<div class="row">
+<div class="col-14">
+	{{ form_row(form.fdate,  {'attr': {'class': 'form-control'}}) }}
+</div>
+</div>
+<div class="row" >
+<div class="col-14" >
+	{{ form_row(form.members,  {'attr': {'class': 'form-control'}}) }}
+</div>
+</div>
+
+<div class="row"  style="margin-top:10px">
+	<div class="col-6">
+		<button class="btn btn-success btn-sm">{{ button_label|default('Guardar') }}</button>
+	</div>
+	<div class="col-6">
+		<button type="button" class="btn btn-danger btn-sm " onclick="mostrarDivCourse()">Cancelar</button>
+	</div>
+</div>
+
+
+
+<div class="modal" id="confirmModalCourse" name="confirmModalCourse" style="display:none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmar acción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que quieres cancelar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar" onclick="ocultarDivCourse()">Cancelar</button>
+                <a href="{{ path('app_course_index') }}" class="btn btn-danger">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Solución Estudiante Prototipo Clase{% endblock %}
+
+{% block body %}
+
+
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+    <h1>Solución Estudiante Prototipo Clase</h1>
+    <div class="row">
+           <div class="col"><strong><i>{{ stud_p_class.course }}/</i></strong></div>
+
+ 
+ 
+    
+           <div class="col"><u><strong></i>{{ stud_p_class.nactivity }}</i></strong></u></div>
+
+    </div>
+
+    <div class="row">
+<div class="col">
+
+    <u><strong><i> Subida por:{{ stud_p_class.action}}</i></strong></u>
+
+
+</div>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tbody style="color:blue">
+       
+
+                <tr>
+                    <th><i>//Resultado</i></th>
+                </tr>
+                            <tr>
+                           
+                                   <td><strong> public class {{ stud_p_class.name }}</strong></td>
+                
+                            </tr>
+                
+                            <tr>
+                
+                            <td> <strong>{</strong></td>
+                            </tr>
+                
+                            <tr>
+                      
+                
+                                {% for a in stud_p_class.atribute %}
+                                    <tr>
+                                   <td><strong>{{a.datatype}} {{ a.name }};</strong></button></td>
+                                   </tr>
+                                {% endfor %}
+                            </tr>
+                <tr>
+                
+                
+                    {%  for o in stud_p_class.operation  %}
+                        <tr>
+                       <td><strong>public {{o.datatype}} {{ o.name }}(){}</strong></td>
+                     
+                       </tr>
+                    {% endfor %}
+                    <tr>
+                       <td> <strong>}</strong></td>
+                </tr>
+                </tr>
+                
+
+<tr>
+{% if incorrecto %}
+
+    <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-ban"></i> Respuesta de Profe!</h4>
+La creación de la estructura de clase uml para el estudiante {{app.user.name}}  en la actividad : {{ stud_p_class.nactivity }} del curso
+
+<strong>{{ stud_p_class.course }}</strong> fue <i>Incorrecta</i>.
+    </div>
+{% else %}
+
+    <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-check"></i> Respuesta de Profe!</h4>
+La creación de la estructura de clase uml para el estudiante {{ stud_p_class.action }}  en la actividad : <strong> {{ stud_p_class.nactivity }} </strong>del curso :
+
+<strong>{{ stud_p_class.course }}<strong> fue <i>Correcta</i>.
+    </div>
+
+
+{% endif %}
+</tr>
+
+
+
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stud_p_class_index') }}"><i class="fa fa-tasks"></i></a>
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
+    <a href="{{ path('app_stud_p_class_edit', {'id': stud_p_class.id}) }}"><i class="fa fa-edit"></i></a>
+
+    {{ include('stud_p_class/_delete_form.html.twig') }}
+
+    {% endif %}
+
+
+        </div>
+</section>
+    </div>
+{% endblock %}

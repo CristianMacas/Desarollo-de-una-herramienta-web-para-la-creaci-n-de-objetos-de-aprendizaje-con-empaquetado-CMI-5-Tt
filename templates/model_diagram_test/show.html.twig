@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modelo Diagrama {% endblock %}
+
+{% block body %}
+
+
+ <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+    <h1>Modelo Diagrama </h1>
+    <div class="row">
+      <div class="col">
+   <strong> <i>Diagrama:{{ model_diagram_test.id }}</i></strong>
+
+</div>
+
+<div class="col">
+   <strong> <i>Creado por:{{ model_diagram_test.action }}</i></strong>
+
+</div>
+
+</div>
+    <div class="row">
+           <div class="col"><strong><i>{{ model_diagram_test.course }}/</i></strong></div>
+
+ 
+ 
+    
+           <div class="col"><u><strong></i>{{ model_diagram_test.nactivity }}</i></strong></u></div>
+
+    </div>
+
+
+
+
+
+    <table class="table">
+        <tbody style="color:gray">
+       
+{% if not incorrecto %}
+            <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-check"></i> Respuesta de Profe!</h4>
+                El  modelo del diagrama  para el estudiante {{ model_diagram_test.action }}  en la actividad : <strong> {{ model_diagram_test.nactivity }} </strong>del curso :
+                
+                <strong>{{ model_diagram_test.course }}<strong> fue <i>Correcta</i>.
+                    </div>
+
+
+  <textarea class="form-control" name="" id="" rows="12" style="border-style: ;color:green" disabled>
+//Respuesta  json
+         
+{{ model_diagram_test.data ? model_diagram_test.data|json_encode : '' }}
+
+           
+            </textarea>
+{% else %}
+    <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-ban"></i> Respuesta de Profe!</h4>
+                El  modelo del diagrama  para el estudiante {{ model_diagram_test.action }}  en la actividad : <strong> {{ model_diagram_test.nactivity }} </strong>del curso :
+                
+                <strong>{{ model_diagram_test.course }}<strong> fue <i>Incorrecta</i>.
+                    </div>
+
+
+
+  <textarea class="form-control" name="" id="" rows="12" style="border-style: ;color:red" disabled>
+//Respuesta  json
+         
+{{ model_diagram_test.data ? model_diagram_test.data|json_encode : '' }}
+
+           
+            </textarea>
+
+            <a href="{{ path('app_model_diagram_success_index') }}">
+             <em>Solución del profe</em>
+            </a>
+{% endif %}
+
+
+
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_model_diagram_test_index') }}"><i class="fa fa-tasks"></i></a>
+
+   
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_model_diagram_test_edit', {'id': model_diagram_test.id}) }}"><i class="fa fa-edit"></i></a>
+    {{ include('model_diagram_test/_delete_form.html.twig') }}
+
+    {% endif %}
+
+
+        </div>
+</section>
+    </div>
+{% endblock %}

@@ -1,0 +1,112 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}xAPI
+{% endblock %}
+
+{% block navbar %}
+	<!-- Navbar -->
+	{% include 'user-nav.html.twig' %}
+{% endblock %}
+
+
+{% block body %}
+
+	<!-- Content Wrapper. Contains page content -->
+	<div
+		class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 5px);">
+		<!-- Content Header (Page header) -->
+		<section class="content-header" style=" width: calc(100% - 280px);">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>
+							<em>Experiencia de aprendizaje</em>
+						</h1>
+					</div>
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item">
+								<a href="#">Declaraciones</a>
+							</li>
+							<li class="breadcrumb-item active">Lista</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+
+
+		<!-- Main content -->
+		<section
+			class="content" style="width: calc(100% - 280px);">
+			<!-- Default box -->
+			<div class="card" style="padding:8px;">
+				<table id="example1" class="table table-striped dataTable" role="grid" aria-describedby="example1_info">
+					<thead>
+						<tr>
+                            
+							<th>Fecha/Hora</th>
+							<th>Curso</th>
+							<th>Actividad</th>
+							<th>Estudiante</th>
+							<th>Verbo</th>
+							<th>Reporte CMI5</th>
+						</tr>
+					</thead>
+					<tbody>						
+						{% for st in statements %}
+							<tr>
+                          		
+							<td>
+                    <strong><em>{{st.timestamp|date('d-m-Y H:i:s')}}</em></strong>
+							</td>
+						  <td>
+							<strong><em>{{ getCampo(st.context,'contextActivities')}} </em></strong>
+						</td> 
+						<td>	
+							<strong>
+								<em>{{ getCampo(st.object,'definition') }}</em>
+							</strong>
+						</td> 
+								<td><strong><em>{{ getCampo(st.actor,'name')}}</em>
+								</strong>
+								</td>
+								<td>
+									<span class="badge badge-pill badge-success">
+										<strong>
+											<i>{{getCampo(st.verb,'en-US') }}</i>
+										</strong>
+									</span>
+								</td>
+								<td>
+									<!--a href="{{ path('app_xapi_statement_pdf', {'id': st.id}) }}">
+										<i class="fa fa-file-pdf"></i>
+									</a>
+									<a href="{{ path('app_xapi_statement_json', {'id': st.id}) }}">
+										<i class="fa fa-eye"></i>
+									</a-->
+									<!--button class="btn btn-info btn-sm" onclick="alert('{{st.id}}')">Ver</button-->
+									<a href="{{ path('app_xapi_statement_json', {'id': st.id}) }}" download title="Descargar"> 
+										<i class="fa fa-download"></i>
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="3">no hay datos</td>
+							</tr>
+				{% endfor %}
+					</tbody>
+				</table>
+				<!-- /.row -->
+			</div>
+			<!-- /.card -->
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+{% endblock %}

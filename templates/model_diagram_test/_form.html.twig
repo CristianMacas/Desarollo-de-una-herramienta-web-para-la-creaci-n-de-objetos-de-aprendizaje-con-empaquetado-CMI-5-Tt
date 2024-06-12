@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+<div class="row">
+	<div class="col-8">
+		{{ form_row(form.action,{'attr':{'style':'display:none'}}) }}
+	</div>
+
+</div>
+<div class="row">
+	<div class="col-6">
+		{{ form_row(form.course) }}
+	</div>
+
+	<div class="col-6">
+		{{ form_row(form.nactivity) }}
+	</div>
+
+</div>
+
+
+<div class="row">
+	<div class="col">
+		{{ form_row(form.data) }}
+	</div>
+
+</div>
+
+
+<button class="btn btn-success">{{ button_label|default('Entregar y Finalizar tarea') }}</button>
+<a class="btn btn-danger " href="{{ path('app_model_diagram_test_index') }}">Abandonar</a>
+{{ form_end(form) }}

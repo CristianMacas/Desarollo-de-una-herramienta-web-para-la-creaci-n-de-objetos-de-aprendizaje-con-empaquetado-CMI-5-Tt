@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actividad{% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper" style="transform: translateX(30px); width: calc(100% - 280px);">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+    <h1>Actividad</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Título</th>
+                <td>{{ n_activity.title }}</td>
+            </tr>
+            <tr>
+                <th>Curso</th>
+                <td>{{ n_activity.name }}</td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>{{ n_activity.description }}</td>
+            </tr>
+            <tr>
+                <th>Retroalimentación</th>
+                <td>{{ n_activity.place }}</td>
+            </tr>
+            <tr>
+                <th>Solución Tecnica</th>
+                <td>{{ n_activity.tecsol }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+    <tr><td>
+    {% if is_granted('ROLE_ADMIN') %}
+
+    <a class="btn btn-success btn-sm" href="{{ path('app_xapi_activity', {'id': n_activity.id}) }}">Empaquetado CMI5</i></a>
+    </td></tr>
+    <tr><td>
+    <a class="btn btn-info btn-sm"  href="/public/GoJS-master/projects/pdf/diagrama.php?mode={{  n_activity.data=="[]" ? 'edit' : 'view' }}&table=model_diagram_success&id={{ n_activity.idsuccess }}">{{  n_activity.data=="[]" ? 'Crear solución' : 'Solución' }}</a>
+
+
+    {% endif %}
+    </td></tr>
+    </table>
+    </div>
+    </section>
+        </div>
+{% endblock %}

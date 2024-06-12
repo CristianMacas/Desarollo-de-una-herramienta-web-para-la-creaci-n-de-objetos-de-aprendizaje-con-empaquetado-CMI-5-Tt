@@ -1,0 +1,7 @@
+
+<ul class="menu">
+    <li {% if selectedOption == 'inicio' %}class="active"{% endif %}><a href="{{ path('app_begin') }}">Inicio</a></li>
+    <li {% if selectedOption == 'acerca' %}class="active"{% endif %}><a href="{{ path('app_begin') }}">Acerca</a></li>
+    <li {% if selectedOption == 'servicios' %}class="active"{% endif %}><a href="{{ path('sapp_begin') }}">Servicios</a></li>
+    <li {% if selectedOption == 'contacto' %}class="active"{% endif %}><a href="{{ path('app_begin') }}">Contacto</a></li>
+</ul>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tincan xmlns="http://projecttincan.com/tincan.xsd">
+  <activities>
+    <activity id="http://id.tincanapi.com/activity/tincan-prototypes/222" type="http://adlnet.gov/expapi/activities/course">
+      <name>Actividad Vacia</name>
+      <description lang="en-US">Vacia actividad</description>
+      <launch lang="en-US">index.html</launch>
+    </activity>
+  </activities>
+</tincan>

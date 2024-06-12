@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tincan xmlns="http://projecttincan.com/tincan.xsd">
+  <activities>
+    <activity id="http://id.tincanapi.com/activity/tincan-prototypes/7" type="http://adlnet.gov/expapi/activities/course">
+      <name>Ejercicio 1 :Clases UML POO</name>
+      <description lang="en-US">Cree una clase Persona con atributo nombre y fecha de nacimiento de la persona(fechaNac).&#13;
+Defina una  operación que obtenga la edad actual(EdadActual).Recuerde hacer una correcta definición de los tipos de datos correspondientes por cada atributo.</description>
+      <launch lang="en-US">index.html</launch>
+    </activity>
+  </activities>
+</tincan>

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista Evaluaciones de Implementación{% endblock %}
+
+{% block body %}
+
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+    <h1>Lista Evaluaciones de Implementación</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            <i class="icon fa fa-check"></i>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+  <div class="card-body table-responsive p-0" style="height: 300px;">
+<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+        <thead>
+            <tr>
+                <th>Curso</th>
+                <th>Actividad</th>
+                <th>Creado por</th>
+                <th>Acciones</th>
+            </tr>
+
+
+        </thead>
+        <tbody>
+            {% for eval_code in eval_codes %}
+            <tr>
+        <td><strong><i>{{ eval_code.course }}</i></strong></td>  
+        <td><span class=" btn btn-warning">{{ eval_code.nactivity }}</span></td>
+        <td><strong><i>{{ eval_code.action }}</i></strong></td>  
+       
+                   
+                
+                <td>
+                    <a href="{{ path('app_eval_code_show', {'id': eval_code.id}) }}"><i class="fa fa-eye"></i></a>
+
+                    {% if is_granted('ROLE_ADMIN')%}
+                    <a href="{{ path('app_eval_code_edit', {'id': eval_code.id}) }}"><i class="fa fa-edit"></i></a>
+                     {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no hay  datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+{% if is_granted('ROLE_ADMIN') %}
+<a class="btn  btn-primary" href="{{ path('app_eval_code_new') }}"><i class=" fa fa-user-plus"></i></a>
+{% endif %}
+ </div>
+</section>
+    </div>
+{% endblock %}
