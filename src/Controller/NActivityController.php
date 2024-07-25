@@ -132,11 +132,6 @@ class NActivityController extends AbstractController
             $nActivityRepository->add($nActivity);
             $this->addFlash('success', 'Datos actualizados satisfactoriamente !!!');
             
-            //return $this->render('course/show.html.twig', [
-            //    'course' => $idcurso,
-            //]);
-            
-            // $em = $this->getDoctrine()->getManager();
             $course =  $em->getRepository('App:Course')->findOneBy(array('id' => $idcurso));
             return $this->render('n_activity/index.html.twig', [
                 'n_activities' => $nActivityRepository->findDataToShowIdSuccessByCourse($idcurso),
