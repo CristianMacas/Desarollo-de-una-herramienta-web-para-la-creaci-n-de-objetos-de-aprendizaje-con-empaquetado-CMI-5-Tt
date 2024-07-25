@@ -140,19 +140,15 @@ WHERE course.id = model_diagram_success.course_id AND model_diagram_success.nact
 
     /**
      * Metodo que crea el archivo ZIP
-     *
      * @param array $files
      * @param string $destinattion
      * @param boolean $overwrite
-     *
      */
     public function createZipArchive($files = array(), $destination = '', $overwrite = false)
     {
-
         if (file_exists($destination) && !$overwrite) {
             return false;
         }
-
         $validFiles = array();
         if (is_array($files)) {
             foreach ($files as $file) {
@@ -161,7 +157,6 @@ WHERE course.id = model_diagram_success.course_id AND model_diagram_success.nact
                 }
             }
         }
-
         if (count($validFiles)) {
             $zip = new ZipArchive();
             if ($zip->open($destination, $overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) == true) {
