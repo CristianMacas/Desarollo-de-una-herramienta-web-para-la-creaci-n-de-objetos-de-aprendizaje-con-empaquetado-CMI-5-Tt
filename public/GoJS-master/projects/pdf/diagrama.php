@@ -66,8 +66,7 @@
                                     }
                                 }
                             }
-                        }
-                        
+                        }        
                     ?>
                       <div class="col align-self-end" style="margin-top: 20px;margin-bottom: 20px;">
                                       <button class="btn btn-info btn-sm" id="Instruction" data-toggle="modal" data-target="#modalInstruction" >Instrucciones para el uso de la herramienta</button>
