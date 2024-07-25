@@ -29,44 +29,21 @@
                 </div>
                 <div class="col-md-10" style="width:100%">
                     <?php
-                        //Aqui se selecciona si se va a agregar o a evauar el diagrama.
-                        $msg = "<div class='container'>
-                                  <div class='row justify-content-between'>
-                                    <div class='col'>
-                                      <div>1. Seleccione el Curso.</div>
-                                   <div>2. Seleccione la Actividad.</div>
-                                   <div>3. Clic en <button> <strong>Iniciar</strong> </button> para crear la soluci&oacute;n</div>
-                                    </div>
-                                    <div class='col'>
-                                      <div>Nota: Usar clic derecho para m&aacute;s opciones.</div>
-                                   <div>Se recomienda fijarse bien en la conexi&oacute;n de las relaciones entre clases</div>
-                                    </div>
-                                    
-                                  </div>
-                                </div>";
+                        //Aqui se selecciona si se va a agregar o a evaluar el diagrama.
                         $buttonText = 'Evaluar Soluci&oacute;n';
                         $modalType = "buttonCheck";
                         if (isset($_GET["mode"]) && ($_GET["mode"] != 'undefined')){
-                            if ($_GET["mode"] == 'add')
+                            if (($_GET["mode"] == 'view') || ($_GET["mode"] == 'edit'))
                             {
-                                $buttonText = 'Agregar Soluci&oacute;n';
-                                $modalType = "buttonInsert";
-                                echo '<pre hidden="true" id="modeEdit" value="false"></pre>';
-                            }
-                            elseif (($_GET["mode"] == 'view') || ($_GET["mode"] == 'edit'))
-                            {
-                                $msg = "<h3>Vista de la Soluci&oacute;n</h3>";
                                 $buttonText = ($_GET["mode"] == 'edit') ? 'Guardar cambios' : '';
                                 if ($_GET["mode"] == 'edit') 
                                 {
                                     $modalType = "buttonInsert";
-                                    $msg = "<h3>Crear Soluci&oacute;n</h3>";
                                     echo '<pre hidden="true" id="modeEdit" value="true"></pre>
                                     ';
                                 }
                                 else
-                                {
-                                    
+                                { 
                                     echo '<pre hidden="true" id="modeEdit" value="false"></pre>';
                                 }
                                 if (isset($_GET["table"]) && ($_GET["table"] != 'undefined'))
@@ -115,10 +92,8 @@
                                         $result = mysqli_query($conn,$sql);
                                         $user_by_email=mysqli_fetch_array($result)['email'];
                                     }
-                                    
                                     echo '<input type="hidden" value="' . $user_by_email . '" id="user">';
-                                ?>
-                                    
+                                ?>     
                                 <select class="form-control" name="course" id="course" required >
                                     <?php 
                                         echo '<option disabled selected> Seleccione el curso </option>';
@@ -255,16 +230,13 @@
                             if (isset($_GET["course"])) 
                             { 
                                 $idcurso = $_GET["course"];
-                                $salida= $ruta.'/n/activity/'.$idcurso.'/course'; 
-                                
+                                $salida= $ruta.'/n/activity/'.$idcurso.'/course';     
                             }
                             else
                             {
-                                $salida= $ruta.'/model/diagram/success';
-                                  
+                                $salida= $ruta.'/model/diagram/success';   
                             }
                         }
-                    
                     ?>
                 <input type="hidden" name="salida" value="<?php echo $salida;?>">    
                 
@@ -664,16 +636,12 @@
     function ocultarConfSalir() 
     {
         var div = document.getElementById("confirmModalSalir");
-        //alert("ver boton");
         var boton = document.querySelector("#Abandonar");
-        //alert(boton);
         if (boton!==null) 
         {
-            //alert("boton presente");
             var aba = document.getElementById("Abandonar");
             if (aba.disabled == false)
             {
-                //alert("boton activo");
                 abandon();
             }
         } 
@@ -689,7 +657,6 @@
     function ocultarNoSalir() {
         var div = document.getElementById("confirmModalSalir");
         div.style.display = "none";
-        //window.history.back();
       }
 
 </script>
