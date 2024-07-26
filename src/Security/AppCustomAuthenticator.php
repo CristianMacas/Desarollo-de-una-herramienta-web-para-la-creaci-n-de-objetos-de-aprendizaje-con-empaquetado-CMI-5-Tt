@@ -94,9 +94,7 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator implements P
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
         $userRole = $token->getUser()->getRoles()[0];
-
         switch ($userRole) {
              case 'ROLE_ADMIN':
                  return new RedirectResponse($this->urlGenerator->generate('app_course_index'));
@@ -105,8 +103,6 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator implements P
              default:
                  throw new \Exception("Rol desconocido: ".$userRole);
          }
-
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         return new RedirectResponse($this->urlGenerator->generate('app_begin'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
