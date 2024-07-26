@@ -41,11 +41,6 @@
                     <a href="/public/GoJS-master/projects/pdf/diagrama.php?mode=view&table=model_diagram_test&id={{ model_diagram_test.id }}" title="Ver">
                         <i class="fa fa-eye"></i>
                     </a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <!--a href="/public/GoJS-master/projects/pdf/diagrama.php?mode=edit&table=model_diagram_test&id={{ model_diagram_test.id }}" title="Editar"-->
-                        <!--i class="fa fa-edit"--><!--/i-->
-                    <!--/a-->
-                    {% endif %}
                 </td>
             </tr>
             {% else %}
@@ -56,11 +51,6 @@
         </tbody>
     </table>
     </div>
-{% if is_granted('ROLE_ADMIN') %}
-<!--a class="btn btn-info btn-sm" href="/GoJS-master/projects/pdf/diagrama.php" >
-    Responder Actividad con Diagrama
-</a-->
-{% endif %}
  </div>
 </section>
     </div>
