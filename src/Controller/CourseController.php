@@ -100,13 +100,11 @@ class CourseController extends AbstractController
     {
         $form = $this->createForm(CourseType::class, $course);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $courseRepository->add($course);
             $this->addFlash('success', 'Datos actualizados satisfactoriamente !!!');
             return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('course/edit.html.twig', [
             'course' => $course,
             'form' => $form->createView(),
