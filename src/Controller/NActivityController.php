@@ -44,16 +44,13 @@ class NActivityController extends AbstractController
         $nActivity = new NActivity();
         $form = $this->createForm(NActivityType::class, $nActivity);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             /** @var NTA $interactiva */
             $interactiva = $em->getRepository('App:NTA')->findBy(array('denomination' => 'Interactiva'));
             $nActivity->setNTA($interactiva[0]);
             $nActivityRepository->add($nActivity);
-
             $course =  $em->getRepository('App:Course')->findOneBy(array('id' => $id));
-
             $diagramSuccess = new ModelDiagramSuccess();
             $diagramSuccess->setCourse($course);
             $diagramSuccess->setNActivity($nActivity);
@@ -61,7 +58,6 @@ class NActivityController extends AbstractController
             $modeldiagramsuccessRepo = $em->getRepository('App:ModelDiagramSuccess');
             $modeldiagramsuccessRepo->add($diagramSuccess);
             $idDiagramSucces= $diagramSuccess->getId();
-            
             $diagram = new ModelDiagramTest();
             $diagram->setCourse($course);
             $diagram->setNActivity($nActivity);
@@ -71,22 +67,18 @@ class NActivityController extends AbstractController
             $diagram->setFecha();
             $modeldiagramtestRepo = $em->getRepository('App:ModelDiagramTest');
             $modeldiagramtestRepo->add($diagram);
-
             $nActivity->addModelDiagramTest($diagram);
             $nActivity->addModelDiagramSuccess($diagramSuccess);
             $course->addModelDiagramTest($diagram);
             $course->addModelDiagramSuccess($diagramSuccess);
-            
             if ($request->getMethod() === 'POST' && $request->request->has('confirmButton'))
             {
                 return $this->redirect('/public/GoJS-master/projects/pdf/diagrama.php?mode=edit&table=model_diagram_success&id='.(string)$idDiagramSucces.'&course='.(string)$id);
             }
             return $this->render('n_activity/index.html.twig', [
                         'n_activities' => $nActivityRepository->findDataToShowIdSuccessByCourse($id),
-                        'title' => 'Actividades del curso '. $course->getName(),]);
-            
+                        'title' => 'Actividades del curso '. $course->getName(),]); 
         }
-
         return $this->render('n_activity/new.html.twig', [
             'n_activity' => $nActivity,
             'id' => $id,
