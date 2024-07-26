@@ -29,7 +29,6 @@ class CourseType extends AbstractType
                           'attr' => array('class' => 'form_control')
                           )
                   )
-            //->add('initialDate', DateType::class, array('disabled'=>$options['isEdit'],'label' => 'Fecha Inicio', 'html5' => false,  'input_format' => 'D/M/Y', 'widget' => 'single_text', 'attr' => array('class' => 'form-control', 'placeholder' => 'dd/MM/yyyy')))
             ->add('initialDate', DateTimeType::class, 
                     array('disabled'=>$options['isEdit'],
                           'label' => 'Fecha Inicio', 
@@ -39,7 +38,6 @@ class CourseType extends AbstractType
                           'attr' => array('class' => 'form-control', 'placeholder' => 'dd/MM/yyyy'),
                          )
                  )
-            //->add('fdate', DateType::class, array('disabled'=>$options['isEdit'],'label' => 'Fecha Final', 'html5' => true,  'widget' => 'single_text', 'attr' => array('class' => 'form-control', 'placeholder' => 'dd/MM/yyyy')))
             ->add('fdate', DateType::class, 
                     array('disabled'=>$options['isEdit'],
                           'label' => 'Fecha Final', 
@@ -49,7 +47,6 @@ class CourseType extends AbstractType
                           'attr' => array('class' => 'form-control', 'placeholder' => 'dd/MM/yyyy'),
                           )
                   )
-
             ->add('members', EntityType::class, array(
                 'label' => 'Miembros',
                 'class' => User::class,
