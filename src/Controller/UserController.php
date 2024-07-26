@@ -47,11 +47,9 @@ class UserController extends AbstractController
                  $plainpwd = $user->getPassword();
                  $encoded = $this->passwordEncoder->encodePassword($user, $plainpwd);
                  $user->setPassword($encoded);
-            //$this->addFlash("success", $user->getRoles()[0]);
             $userRepository->add($user);
             $this->addFlash("success", 'Insertado satisfactoriamente!!! ');
             $form = $this->createForm(UserType::class, $user);
-            
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
