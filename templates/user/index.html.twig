@@ -29,29 +29,23 @@
 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
         <thead>
             <tr>
-             
                 <th>Correo electr&oacute;nico</th>
                 <th>Roles</th>
                 <th>Nombre</th>
                 <th>Acciones</th>
             </tr>
-
-
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-            
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles[0]=='ROLE_USER' ? 'Estudiante' : 'Profesor' }}</td>
                 <td>{{ user.name }}</td>
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}"><i class="fa fa-eye" title="Ver"></i></a>
-
                     {% if is_granted('ROLE_ADMIN')%}
                         {% if ( user.email != "admin@cmi5.com" ) %}
-                        <a href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa fa-edit" title="Editar"></i></a>
-                        
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa fa-edit" title="Editar"></i></a>   
                         {% if ( app.user.username == "admin@cmi5.com" ) %}
                             <a href="{{ path('app_user_delete', {'id': user.id}) }}"><i class="fa fa-trash" title="Borrar"></i></a>
                         {% endif %}
