@@ -30,18 +30,13 @@ class CourseController extends AbstractController
      */
     function new (Request $request, CourseRepository $courseRepository): Response {
         $course = new Course();
-
         $form = $this->createForm(CourseType::class, $course);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            
             $courseRepository->add($course);
             $this->addFlash("success", 'Insertado satisfactoriamente!!! ');
             return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('course/new.html.twig', [
             'course' => $course,
             'form' => $form->createView(),
