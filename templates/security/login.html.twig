@@ -52,12 +52,8 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Inicie sesión</p>
-
-
         <div class="input-group mb-3">
-          {# <input type="email" class="form-control" placeholder="Email"> #}
               <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="Correo"class="form-control" autocomplete="email" required autofocus>
-
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -65,9 +61,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          {# <input type="password" class="form-control" placeholder="Password"> #}
               <input type="password" name="password" id="inputPassword" placeholder="Clave de acceso"class="form-control" autocomplete="current-password" required>
-
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -75,24 +69,16 @@
           </div>
         </div>
         <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
-
-          <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
           </div>
-          <!-- /.col -->
         </div>
-
- 
       <p class="mb-0">
         <button type="submit" class="btn btn-primary btn-block btn-flat"><a href="{{ path('app_register')}}"  class="btn btn-primary btn-block btn-flat">Registrarme ahora</a></button>
       </p>
-      
     </div>
-    <!-- /.login-card-body -->
   </div>
 </div>
-<!-- /.login-box -->
 </form>
 </body>
 
