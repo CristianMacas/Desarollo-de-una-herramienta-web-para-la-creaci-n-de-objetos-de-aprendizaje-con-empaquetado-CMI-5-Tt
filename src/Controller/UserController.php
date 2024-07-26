@@ -43,14 +43,14 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-                 /* código para codificar clave     */
-                 $plainpwd = $user->getPassword();
-                 $encoded = $this->passwordEncoder->encodePassword($user, $plainpwd);
-                 $user->setPassword($encoded);
-            $userRepository->add($user);
-            $this->addFlash("success", 'Insertado satisfactoriamente!!! ');
-            $form = $this->createForm(UserType::class, $user);
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+                /* código para codificar clave     */
+                $plainpwd = $user->getPassword();
+                $encoded = $this->passwordEncoder->encodePassword($user, $plainpwd);
+                $user->setPassword($encoded);
+                $userRepository->add($user);
+                $this->addFlash("success", 'Insertado satisfactoriamente!!! ');
+                $form = $this->createForm(UserType::class, $user);
+                return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('user/new.html.twig', [
@@ -76,18 +76,15 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-     /* código para codificar clave     */
-     $plainpwd = $user->getPassword();
-     $encoded = $this->passwordEncoder->encodePassword($user, $plainpwd);
-     $user->setPassword($encoded);
-
-            $userRepository->add($user);
-            $this->addFlash('success', 'Datos actualizados satisfactoriamente !!!');
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+             /* código para codificar clave     */
+             $plainpwd = $user->getPassword();
+             $encoded = $this->passwordEncoder->encodePassword($user, $plainpwd);
+             $user->setPassword($encoded);
+             $userRepository->add($user);
+             $this->addFlash('success', 'Datos actualizados satisfactoriamente !!!');
+             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
